@@ -46,3 +46,10 @@ mvnw.cmd
 
 # JUnit test reports
 test-output/
+
+# Gradle
+.gradle/
+build/
+gradle/
+gradlew
+gradlew.bat

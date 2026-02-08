@@ -19,7 +19,7 @@ public class User {
         this.orgId = orgId;
         this.authMethod = authMethod;
         this.position = position;
-        this.hasAdopted = false;
+        this.hasAdopted = authMethod == AuthMethod.PASSKEY;
         this.adoptedAt = null;
         this.nudgeHistory = new ArrayList<>();
     }
@@ -57,6 +57,10 @@ public class User {
     }
 
     public void adopt() {
+        if (hasAdopted) {
+            throw new IllegalStateException();
+        }
+        
         hasAdopted = true;
         adoptedAt = LocalDateTime.now();
         authMethod = AuthMethod.PASSKEY;
