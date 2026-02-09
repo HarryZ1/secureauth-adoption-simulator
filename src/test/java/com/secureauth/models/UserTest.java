@@ -3,10 +3,12 @@ package com.secureauth.models;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDateTime;
+
 
 public class UserTest {
     @Test
-    void constructor_setsCoorectDefaults() {
+    void constructor_setsFieldsCorrectly() {
         User user = new User("user-1", "org-1", AuthMethod.OTP, Position.DEVELOPER);
 
         assertEquals("user-1", user.getUserId());
@@ -16,6 +18,13 @@ public class UserTest {
         assertFalse(user.hasAdopted());
         assertNull(user.getAdoptedAt());
         assertTrue(user.getNudgeHistory().isEmpty());
+    }
+
+    @Test
+    void constructor_withPasskey_setsHasAdoptedTrue() {
+        User user = new User("user-1", "org-1", AuthMethod.PASSKEY, Position.DEVELOPER);
+
+        assertTrue(user.hasAdopted());
     }
 
     @Test
@@ -36,5 +45,28 @@ public class UserTest {
         assertTrue(user.hasAdopted());
         assertNotNull(user.getAdoptedAt());
         assertEquals(AuthMethod.PASSKEY, user.getAuthMethod());
+    }
+
+    @Test
+    void addNudge_addsToHistory() {
+        User user = new User("user-1", "org-1", AuthMethod.OTP, Position.DEVELOPER);
+        LocalDateTime time = LocalDateTime.now();
+        NudgeEvent nudge = new NudgeEvent(time, "hello", NudgeType.EMAIL);
+
+        user.addNudge(nudge);
+
+        assertEquals(1, user.getNudgeHistory().size());
+        assertEquals(nudge, user.getNudgeHistory().get(0));
+    }
+
+    @Test
+    void addNudge_throwsWhenAlreadyAdopted() {
+        User user = new User("user-1", "org-1", AuthMethod.PASSKEY, Position.DEVELOPER);
+        LocalDateTime time = LocalDateTime.now();
+        NudgeEvent nudge = new NudgeEvent(time, "hello", NudgeType.EMAIL);
+
+        assertThrows(IllegalStateException.class, () -> {
+            user.addNudge(nudge);
+        });
     }
 }

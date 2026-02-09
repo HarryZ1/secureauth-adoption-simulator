@@ -53,6 +53,10 @@ public class User {
     }
 
     public void addNudge(NudgeEvent nudgeEvent) {
+        if (hasAdopted) {
+            throw new IllegalStateException();
+        }
+        
         nudgeHistory.add(nudgeEvent);
     }
 
@@ -60,7 +64,7 @@ public class User {
         if (hasAdopted) {
             throw new IllegalStateException();
         }
-        
+
         hasAdopted = true;
         adoptedAt = LocalDateTime.now();
         authMethod = AuthMethod.PASSKEY;
