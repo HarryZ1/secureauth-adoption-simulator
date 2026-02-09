@@ -23,7 +23,7 @@ public class ITNudgePolicy implements NudgePolicy {
     }
 
     public String customizeMessage(String message) {
-        return "This is for Cloud: " + message + " Goodbye from Cloud.";
+        return "This is for IT: " + message + " Goodbye from IT.";
     }
 
     public boolean isUserEligible(User user) {
