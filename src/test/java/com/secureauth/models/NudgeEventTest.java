@@ -13,7 +13,7 @@ public class NudgeEventTest {
         NudgeType type = NudgeType.EMAIL;
         NudgeEvent nudgeEvent = new NudgeEvent(currentTime, message, type);
 
-        assertEquals(currentTime, nudgeEvent.getTimeStamp());
+        assertEquals(currentTime, nudgeEvent.getTimestamp());
         assertEquals(message, nudgeEvent.getMessage());
         assertEquals(type, nudgeEvent.getType());
     }

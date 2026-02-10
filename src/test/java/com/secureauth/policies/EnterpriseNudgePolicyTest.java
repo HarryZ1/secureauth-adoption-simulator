@@ -12,7 +12,7 @@ import com.secureauth.models.User;
 
 public class EnterpriseNudgePolicyTest {
     @Test
-    void getNudgeFrequency_executive() {
+    void getNudgeFrequency_returnsZeroWhenExecutive() {
         User user = new User("user-1", "org-1", AuthMethod.OTP, Position.EXECUTIVE);
         NudgePolicy policy = new EnterpriseNudgePolicy();
 
@@ -20,7 +20,7 @@ public class EnterpriseNudgePolicyTest {
     }
 
     @Test
-    void getNudgeFrequency_developer() {
+    void getNudgeFrequency_returnsThreeWhenDeveloper() {
         User user = new User("user-1", "org-1", AuthMethod.OTP, Position.DEVELOPER);
         NudgePolicy policy = new EnterpriseNudgePolicy();
 
@@ -28,7 +28,7 @@ public class EnterpriseNudgePolicyTest {
     }
 
     @Test
-    void getNudgeFrequency_manager() {
+    void getNudgeFrequency_returnsSevenWhenManager() {
         User user = new User("user-1", "org-1", AuthMethod.OTP, Position.MANAGER);
         NudgePolicy policy = new EnterpriseNudgePolicy();
 
@@ -36,14 +36,14 @@ public class EnterpriseNudgePolicyTest {
     }
 
     @Test
-    void customizeMessage_setCorrectMessageCustomizations() {
+    void customizeMessage_wrapsMessageWithOrgText() {
         NudgePolicy policy = new EnterpriseNudgePolicy();
 
         assertEquals("This is for Enterprise: Hello! Goodbye from Enterprise.", policy.customizeMessage("Hello!"));
     }
 
     @Test
-    void isUserEligible_returnsTrue() {
+    void isUserEligible_returnsTrueWhenEligible() {
         User user = new User("user-1", "org-1", AuthMethod.OTP, Position.MANAGER);
         NudgePolicy policy = new EnterpriseNudgePolicy();
 

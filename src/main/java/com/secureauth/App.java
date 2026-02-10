@@ -10,7 +10,7 @@ public class App {
     
         // 1. Create an Enterprise organization
         Organization enterpriseOrg = new Organization(OrganizationType.ENTERPRISE, "org-enterprise");
-        System.out.println("Created organization: " + enterpriseOrg.getOrgID() + " (Type: " + enterpriseOrg.getType() + ")");
+        System.out.println("Created organization: " + enterpriseOrg.getOrgId() + " (Type: " + enterpriseOrg.getType() + ")");
         
         // 2. Create a developer using OTP (eligible for nudging)
         User alice = new User("user-alice", "org-enterprise", AuthMethod.OTP, Position.DEVELOPER);

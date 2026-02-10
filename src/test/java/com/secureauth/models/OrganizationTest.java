@@ -17,7 +17,7 @@ public class OrganizationTest {
         Organization organization = new Organization(type, orgId);
         
         assertEquals(type, organization.getType());
-        assertEquals(orgId, organization.getOrgID());
+        assertEquals(orgId, organization.getOrgId());
     }
 
     @Test

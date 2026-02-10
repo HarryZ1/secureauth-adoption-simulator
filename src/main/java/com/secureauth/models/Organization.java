@@ -4,12 +4,12 @@ import com.secureauth.policies.*;
 
 public class Organization {
     private OrganizationType type;
-    private String orgID;
+    private String orgId;
     private NudgePolicy nudgePolicy;
 
-    public Organization(OrganizationType type, String orgID) {
+    public Organization(OrganizationType type, String orgId) {
         this.type = type;
-        this.orgID = orgID;
+        this.orgId = orgId;
         this.nudgePolicy = createNudgePolicy(type);
     }
 
@@ -30,8 +30,8 @@ public class Organization {
         return type;
     }
 
-    public String getOrgID() {
-        return orgID;
+    public String getOrgId() {
+        return orgId;
     }
 
     public NudgePolicy getNudgePolicy() {

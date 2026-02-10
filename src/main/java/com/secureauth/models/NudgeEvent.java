@@ -13,7 +13,7 @@ public class NudgeEvent {
         this.type = type;
     }
 
-    public LocalDateTime getTimeStamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
